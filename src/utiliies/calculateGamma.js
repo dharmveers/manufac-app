@@ -1,32 +1,25 @@
 export const calculateGamma = (dataset) => {
-    const gammaValues = dataset.map(point => (point.Ash * point.Hue) / point.Magnesium);
+     const gammaValues = dataset.map(point => (point.Ash * point.Hue) / point.Magnesium);
 
     //mean
     const calculateMean=(values) =>{
         let sum=0;
-        let len=0;
         values.forEach(element => {
             sum+=element;
-            len++;
         });
-        return (sum/len);
+        return (sum/values.length);
     }
 
     //median
     const calculateMedian=(values)=>{
         let sortedval=values.toSorted();
-        let len=sortedval.length;
-        let med=0;
-        if(len===1){
-            med=values[0];
-            return med.toFixed(3);
-        }
-        else if(len%2===0){
-            med=(sortedval[(len/2)-1]+sortedval[len/2])*.5;
+        let med=Math.floor(sortedval.length/2);
+        if(values.length%2===0){
+          med=(sortedval[med-1]+sortedval[med])*.5;
         }else{
-            med=sortedval[len/2];
+            med=sortedval[med];
         }
-        return med;
+        return med.toFixed(3);
     }
         // Function to calculate the mode of an array
         const calculateMode = (arr) => {
@@ -43,7 +36,7 @@ export const calculateGamma = (dataset) => {
               }
             });
         
-            return modeValue;
+            return modeValue!==undefined?modeValue:0;
           };
 
     const classWiseData = {};
@@ -55,8 +48,7 @@ export const calculateGamma = (dataset) => {
           gammaValues: [],
         };
       }
-  
-      classWiseData[className].gammaValues.push((point.Ash * point.Hue) / point.Magnesium);
+      classWiseData[className].push(gammaValues);
     });
   
     const result = {};

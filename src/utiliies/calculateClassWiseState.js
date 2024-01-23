@@ -1,14 +1,14 @@
 import { dataset } from "./datasets";
 
-export function calculateClassWiseState(props){
+export function calculateClassWiseState(){
 
     const stats={}
     dataset.forEach((entry)=>{
-        const className=`Class${entry.Alcohol}`;
-        if(!stats[className]){
-            stats[className]=[]
+        const alcoClass=`Class ${entry.Alcohol}`;
+        if(!stats[alcoClass]){
+            stats[alcoClass]=[]
         }
-        stats[className].push(entry[props]);
+        stats[alcoClass].push(entry.Flavanoids);
     });
     return stats;
 }

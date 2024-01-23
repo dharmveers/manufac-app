@@ -15,19 +15,19 @@ const Table = ({ data }) => {
         </thead>
         <tbody>
             <tr>
-                <td>Mean</td>
+                <td>Flavanoids Mean</td>
                 {Object.values(data).map((values, index) => (
-                    <td key={index} className="row">{calculateMean(values)}</td>
+                    <td key={index} className="row">{calculateMean(values).toFixed(3)}</td>
                 ))}
             </tr>
             <tr>
-                <td>Median</td>
+                <td>Flavanoids Median</td>
                 {Object.values(data).map((values, index) => (
-                    <td key={index} className="row">{calculateMedian(values)}</td>
+                    <td key={index} className="row">{calculateMedian(values).toFixed(3)}</td>
                 ))}
             </tr>
             <tr>
-                <td>Mod</td>
+                <td>Flavanoids Mod</td>
                 {Object.values(data).map((values, index) => (
                     <td key={index} className="row">{calculateMode(values)}</td>
                 ))}
